@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState, useEffect } from "react";
+import { getMovieList } from "./api";
+import Header from "./components/Header";
+import MovieList from "./components/MovieList";
+import SearchMovie from "./components/SearchMovie";
 
-function App() {
+const App = () => {
+  const [listMovie, setListMovie] = useState([]);
+  const [movieHeader, setMovieHeader] = useState("Popular Now");
+
+  useEffect(() => {
+    getMovieList().then((result) => {
+      setListMovie(result);
+    });
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <Header setListMovie={setListMovie} setMovieHeader={setMovieHeader} />
       </header>
+      <main>
+        <SearchMovie setListMovie={setListMovie} setMovieHeader={setMovieHeader} />
+        <section className="movie-container">
+          <div className="movie-header">{movieHeader}</div>
+          <MovieList listMovie={listMovie} />
+        </section>
+      </main>
     </div>
   );
-}
+};
 
 export default App;
