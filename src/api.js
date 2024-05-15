@@ -4,12 +4,12 @@ const apiKey = process.env.REACT_APP_APIKEY;
 const baseUrl = process.env.REACT_APP_BASEURL;
 
 export const getMovieList = async () => {
-  const movie = await axios.get(`${baseUrl}/movie/popular?api_key=${apiKey}`);
+  const movie = await axios.get(`${baseUrl}/movie/popular?include_adult=false&api_key=${apiKey}`);
   return movie.data.results;
 };
 
 export const searchMovieList = async (q) => {
-  const s = await axios.get(`${baseUrl}/search/movie?query=${q}&api_key=${apiKey}`);
+  const s = await axios.get(`${baseUrl}/search/multi?query=${q}&include_adult=false&api_key=${apiKey}`);
   return s.data.results;
 };
 

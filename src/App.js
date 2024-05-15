@@ -4,6 +4,7 @@ import { getMovieList } from "./api";
 import Header from "./components/Header";
 import MovieList from "./components/MovieList";
 import SearchMovie from "./components/SearchMovie";
+import Pagination from "./components/Pagination";
 
 const App = () => {
   const [listMovie, setListMovie] = useState([]);
@@ -15,6 +16,13 @@ const App = () => {
     });
   }, []);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postPerPage, setPostPerPage] = useState(3);
+
+  const lasPostIndex = currentPage * postPerPage;
+  const firsPostIndex = lasPostIndex - postPerPage;
+  const currentPost = listMovie.slice(firsPostIndex, lasPostIndex);
+
   return (
     <div className="App">
       <header className="App-header">
@@ -24,7 +32,8 @@ const App = () => {
         <SearchMovie setListMovie={setListMovie} setMovieHeader={setMovieHeader} />
         <section className="movie-container">
           <div className="movie-header">{movieHeader}</div>
-          <MovieList listMovie={listMovie} />
+          <Pagination totalPost={listMovie.length} postPerPage={postPerPage} setCurrentPage={setCurrentPage} currentPage={currentPage} setPostPerPage={setPostPerPage} />
+          <MovieList currentPost={currentPost} />
         </section>
       </main>
     </div>

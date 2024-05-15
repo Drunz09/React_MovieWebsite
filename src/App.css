@@ -40,20 +40,34 @@ nav {
   align-items: center;
   gap: 2rem;
   list-style: none;
-  margin-left: -5rem;
 }
 
 .nav-list ul li {
   font-size: 1.05rem;
   cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.nav-list ul li:hover {
+  color: #b9b9b9;
+}
+
+.nav-list ul li a {
+  text-decoration: none;
+  color: #fff;
+  transition: all 0.3s ease-out;
+}
+
+.nav-list ul li a:hover {
+  color: #b9b9b9;
 }
 
 .nav-hamburger {
   cursor: pointer;
-  display: flex;
   align-items: center;
   flex-direction: column;
   gap: 0.2rem;
+  display: none;
 }
 
 .nav-hamburger span {
@@ -103,8 +117,41 @@ main {
 .movie-header {
   width: 100%;
   font-size: 2rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.3rem;
   color: #fff;
+}
+
+.movie-pagination {
+  width: 100%;
+  margin: 0.8rem 0 1.2rem;
+}
+
+.movie-pagination button {
+  padding: 0.3rem 0.6rem;
+  margin: 0 0.35rem;
+  color: #fff;
+  border-radius: 8px;
+  border: transparent;
+  background-color: transparent;
+  transition: all 0.3s ease-out;
+}
+
+.movie-pagination button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.movie-pagination button.active {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.movie-pagination label {
+  color: #ffff;
+}
+
+.movie-pagination input {
+  padding: 0.2rem 0.5rem;
+  margin-bottom: 0.6rem;
+  -moz-appearance: textfield;
 }
 
 .movie-wrapper {
@@ -154,4 +201,51 @@ main {
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+@media screen and (max-width: 992px) {
+  .movie-wrapper {
+    width: 48%;
+  }
+
+  .search-movie input {
+    width: 80%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .nav-list {
+    padding: 5rem 0;
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100vh;
+    background-color: #373b44;
+    transform: translateX(180%);
+    transition: all 0.5s ease-out;
+  }
+
+  .nav-list.hidden {
+    transform: translateX(0);
+  }
+
+  .nav-list ul {
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .nav-list ul li {
+    width: 100%;
+    padding: 0.5rem 0;
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+    border-bottom: 1px solid #fff;
+  }
+
+  .nav-hamburger {
+    display: flex;
+    z-index: 9999;
+  }
 }

@@ -1,12 +1,12 @@
-const MovieList = ({ listMovie }) => {
-  if (listMovie.length === 0) {
+const MovieList = ({ currentPost }) => {
+  if (currentPost.length === 0) {
     return (
       <div className="movie-none">
         <h1>Movie Not Found</h1>
       </div>
     );
   } else {
-    return listMovie.map((movie, i) => {
+    return currentPost.map((movie, i) => {
       return (
         <div className="movie-wrapper" key={i}>
           <div className="movie-name">{movie.title ? movie.title : movie.original_name}</div>
